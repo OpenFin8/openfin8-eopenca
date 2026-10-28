@@ -16,7 +16,7 @@ pub struct ScopeWhitelist {
 }
 
 pub static E_FINTECH_SCOPE_WHITELIST: ScopeWhitelist = ScopeWhitelist {
-    app_slug: "eopenca".to_string(),
+    app_slug: "openfin8-eopenca".to_string(),
     allowed_scopes: vec![
         "openid".to_string(),
         "profile".to_string(),

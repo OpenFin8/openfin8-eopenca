@@ -3,7 +3,7 @@
   "services": [],
   "apps": [
     {
-      "slug": "eopenca",
+      "slug": "openfin8-eopenca",
       "web_dir": "build/web",
       "listing": {
         "app_name": "Bank8:eOpenCA",

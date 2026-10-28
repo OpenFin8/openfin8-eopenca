@@ -1,6 +1,6 @@
 # OpenFin8:EOpenCA - Open Finance Data Recipient App
 
-[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://github.com/OpenFin8/eopenca/blob/main/LICENSE)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://github.com/OpenFin8/openfin8-eopenca/blob/main/LICENSE)
 [![Built with Flutter](https://img.shields.io/badge/Built%20with-Flutter-02569B?logo=flutter)](https://flutter.dev)
 [![Website](https://img.shields.io/badge/website-openfin8.dev-0E7C66)](https://openfin8.dev/)
 
