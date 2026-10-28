@@ -53,8 +53,8 @@ directly.
 
 ## License
 
-Apache-2.0 (see [LICENSE](LICENSE), [NOTICE](NOTICE)). The security
-model is platform-wide - read [SECURITY.md](SECURITY.md).
+Apache-2.0 (see [LICENSE](https://github.com/OpenFin8/openfin8-eopenca/blob/main/LICENSE), [NOTICE](https://github.com/OpenFin8/openfin8-eopenca/blob/main/NOTICE)). The security
+model is platform-wide - read [SECURITY.md](https://github.com/OpenFin8/openfin8-eopenca/blob/main/SECURITY.md).
 
 ---
 
