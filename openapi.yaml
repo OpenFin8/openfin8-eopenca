@@ -1,15 +1,15 @@
 # SPDX-FileCopyrightText: Copyright Logically Magic Inc. <hello@logicallymagic.com>
 # SPDX-FileCopyrightText: Copyright Hamid Jahanzad <Hamid@Jahanzad.com>
-# SPDX-FileCopyrightText: Copyright Contributors to the Bank8:EFintech
+# SPDX-FileCopyrightText: Copyright Contributors to the OpenFin8:EOpenCA
 # SPDX-License-Identifier: Apache-2.0
 
 openapi: 3.1.0
 info:
-  title: eFintech Sentin8:BFF API
-  description: eFintech Backend for Frontend (Sentin8:BFF) API surface. FDX Data Recipient demo.
+  title: eOpenCA Sentin8:BFF API
+  description: eOpenCA Backend for Frontend (Sentin8:BFF) API surface. FDX Data Recipient demo.
   version: 0.1.0
 servers:
-  - url: https://bff.bank8-efintech.{env}.{org}.local.sentin8.dev
+  - url: https://bff.bank8-eopenca.{env}.{org}.local.sentin8.dev
     variables:
       env: {default: prod}
       org: {default: acme}
@@ -28,7 +28,7 @@ paths:
         - {name: state, in: query, required: true, schema: {type: string}}
       responses:
         '302':
-          description: Redirect to eFintech home
+          description: Redirect to eOpenCA home
     post:
       summary: Programmatic callback (mobile)
       requestBody:

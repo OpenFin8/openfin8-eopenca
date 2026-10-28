@@ -1,36 +1,36 @@
 // SPDX-FileCopyrightText: Copyright Logically Magic Inc. <hello@logicallymagic.com>
 // SPDX-FileCopyrightText: Copyright Hamid Jahanzad <Hamid@Jahanzad.com>
-// SPDX-FileCopyrightText: Copyright Contributors to the Bank8:EFintech
+// SPDX-FileCopyrightText: Copyright Contributors to the OpenFin8:EOpenCA
 // SPDX-License-Identifier: Apache-2.0
 
-// eFintech integration tests.
+// eOpenCA integration tests.
 import 'package:flutter_test/flutter_test.dart';
-import 'package:efintech/services.dart';
+import 'package:eopenca/services.dart';
 
 void main() {
   group('Consent flow integration', () {
-    test('EFintechServices provides FDX client for consent operations', () {
-      final s = EFintechServices(bffBaseUrl: 'https://bff.bank8-efintech.prod.acme.local.sentin8.dev');
-      expect(s.fdx.serviceName, equals('bank8-fdx'));
+    test('EOpenCAServices provides FDX client for consent operations', () {
+      final s = EOpenCAServices(bffBaseUrl: 'https://bff.bank8-eopenca.prod.acme.local.sentin8.dev');
+      expect(s.fdx.serviceName, equals('openfin8-ca'));
     });
   });
 
   group('Provider catalog integration', () {
     test('FDX client available for provider catalog', () {
-      final s = EFintechServices(bffBaseUrl: 'https://bff.bank8-efintech.prod.acme.local.sentin8.dev');
+      final s = EOpenCAServices(bffBaseUrl: 'https://bff.bank8-eopenca.prod.acme.local.sentin8.dev');
       expect(s.fdx, isNotNull);
     });
   });
 
   group('Data refresh integration', () {
     test('FDX client available for refresh trigger', () {
-      final s = EFintechServices(bffBaseUrl: 'https://bff.bank8-efintech.prod.acme.local.sentin8.dev');
+      final s = EOpenCAServices(bffBaseUrl: 'https://bff.bank8-eopenca.prod.acme.local.sentin8.dev');
       expect(s.fdx, isNotNull);
     });
   });
 
   group('DCR integration', () {
-    test('DCR is mandatory for all eFintech instances', () {
+    test('DCR is mandatory for all eOpenCA instances', () {
       expect(true, isTrue); // Verified by app-listing.json supportsDynamicClientRegistration=true
     });
   });

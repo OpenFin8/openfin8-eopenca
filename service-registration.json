@@ -3,11 +3,11 @@
   "services": [],
   "apps": [
     {
-      "slug": "efintech",
+      "slug": "eopenca",
       "web_dir": "build/web",
       "listing": {
-        "app_name": "Bank8:eFintech",
-        "app_slug": "bank8-efintech",
+        "app_name": "Bank8:eOpenCA",
+        "app_slug": "bank8-eopenca",
         "description": "FDX Data Recipient app - connect your external bank accounts, view balances, transactions, and manage consent.",
         "backend_url": "http://localhost:3006",
         "supports_dcr": true,

@@ -1,12 +1,12 @@
-# Bank8:eFintech - Business Requirements & Functionality
+# OpenFin8:EOpenCA - Business Requirements & Functionality
 
 > Audience: product owners, business analysts, and anyone evaluating what
-> Bank8:eFintech **does for the business**. For architecture read `README.md`;
+> OpenFin8:EOpenCA **does for the business**. For architecture read `README.md`;
 > for wire-level detail read `DESIGN.md`.
 
 ## 1. Business Purpose
 
-- Demonstrate the **FDX Data Recipient** side of open banking end to end: a
+- Demonstrate the **open-finance Data Recipient** side of open banking end to end: a
   fintech app that discovers external providers, obtains customer consent, and
   displays consented financial data.
 - Prove that third-party data retrieval can run entirely on platform rails -
@@ -17,23 +17,23 @@
 
 | Capability | Delivered through |
 |---|---|
-| External provider catalog browsing + provider detail | Bank8:FDX recipient APIs |
-| Consent journey initiation (hand-off to hosted authorization UI) | Bank8:FDX + Sentin8:Auth |
-| Consent status tracking (bounded polling to a terminal state) | Bank8:FDX |
-| Consent revocation and refresh from the fintech side | Bank8:FDX |
-| Consented account listing (consent-filtered) | Bank8:FDX |
-| Consented transaction history (paginated) | Bank8:FDX |
+| External provider catalog browsing + provider detail | Bank8:open-finance recipient APIs |
+| Consent journey initiation (hand-off to hosted authorization UI) | Bank8:open-finance + Sentin8:Auth |
+| Consent status tracking (bounded polling to a terminal state) | Bank8:open-finance |
+| Consent revocation and refresh from the fintech side | Bank8:open-finance |
+| Consented account listing (consent-filtered) | Bank8:open-finance |
+| Consented transaction history (paginated) | Bank8:open-finance |
 | Instance admin overview (staff) | runtime context |
-| FDX recipient-side administration (staff) | Bank8:FDX |
+| open-finance recipient-side administration (staff) | Bank8:open-finance |
 
-**What eFintech does NOT own (business boundary):**
+**What eOpenCA does NOT own (business boundary):**
 
 | Concern | Owning service |
 |---|---|
 | Identity, hosted sign-in and consent UI | Sentin8:Auth |
-| Provider gateway, consent enforcement, data retrieval | Bank8:FDX |
+| Provider gateway, consent enforcement, data retrieval | Bank8:open-finance |
 | Financial truth at the provider bank | Bank8:Ledger / Bank8:Payments (provider side) |
-| Session/token custody (incl. provider tokens) | Sentin8:BFF / Bank8:FDX |
+| Session/token custody (incl. provider tokens) | Sentin8:BFF / Bank8:open-finance |
 | Structured persistence | Sentin8:DB |
 | Document/object bytes | storage |
 
@@ -51,12 +51,12 @@
 
 ## 4. Business Events (Outbound)
 
-eFintech emits no domain events of its own (pure presentation layer).
+eOpenCA emits no domain events of its own (pure presentation layer).
 Operations it triggers *upstream*:
 
 | Operation in app | Upstream effect |
 |---|---|
-| Consent start → customer authorizes | Consent lifecycle transitions in Bank8:FDX (and provider-side notification) |
+| Consent start → customer authorizes | Consent lifecycle transitions in Bank8:open-finance (and provider-side notification) |
 | Consent revoke | Consent-terminated event; linked recipient tokens invalidated |
 | Consent refresh | Re-authorization journey; consent lifecycle restarts |
 
@@ -82,7 +82,7 @@ in this app today.
 | Persona | What they do |
 |---|---|
 | Fintech customer | Browses providers, starts a data-sharing consent, authorizes in the hosted UI, then reviews consented accounts and transactions; can revoke at any time. |
-| Fintech operator (admin surface) | Monitors the instance and the recipient-side FDX state (providers, consents). |
+| Fintech operator (admin surface) | Monitors the instance and the recipient-side open-finance state (providers, consents). |
 | Product owner / integration tester | Validates the recipient journey as the certification-ready demo of the platform's open-banking rails. |
 
 ## 7. KPIs / Success Criteria
@@ -90,7 +90,7 @@ in this app today.
 - **Reliability:** consent journeys reach a terminal state without silent
   hangs; polling never exceeds its bound.
 - **Latency:** provider catalog and consented-data screens perceived instant
-  (single proxy hop; data from platform caches on the FDX plane).
+  (single proxy hop; data from platform caches on the open-finance plane).
 - **Security:** zero provider-token exposure; every data view traceable to an
   active consent.
 - **UX quality:** the whole provider → consent → data journey completes in a
@@ -104,7 +104,7 @@ in this app today.
 |---|---|
 | Sentin8:Auth | Sign-in/sign-up; hosted consent UI; consent authorization |
 | Sentin8:BFF | Session custody, token attach, scope gating, proxy |
-| Bank8:FDX | Provider registry, consent lifecycle, consented data retrieval |
+| Bank8:open-finance | Provider registry, consent lifecycle, consented data retrieval |
 | Sentin8:App | Instance provisioning, runtime context, listing |
 | Sentin8:TLS | Hostname → instance resolution, TLS termination |
 | Provider side (Bank8:eBank tenant) | Supplies the consented accounts/transactions through the provider plane |
@@ -127,11 +127,11 @@ in this app today.
 
 ## 10. Open Business Questions
 
-- Should the fintech support recipient-initiated payments (FDX money
+- Should the fintech support recipient-initiated payments (open-finance money
   movement writes) in the future, or remain a data-read demo?
 - Should consented-data refresh become an automatic background capability
   (scheduled retrieval) instead of on-demand viewing?
 
 ---
 
-**Architecture & Design:** bank8:efintech and its underlying concepts were designed by [Hamid Jahanzad](https://www.linkedin.com/in/hamidjahanzad/).
+**Architecture & Design:** bank8:eopenca and its underlying concepts were designed by [Hamid Jahanzad](https://www.linkedin.com/in/hamidjahanzad/).

@@ -1,12 +1,12 @@
 // SPDX-FileCopyrightText: Copyright Logically Magic Inc. <hello@logicallymagic.com>
 // SPDX-FileCopyrightText: Copyright Hamid Jahanzad <Hamid@Jahanzad.com>
-// SPDX-FileCopyrightText: Copyright Contributors to the Bank8:EFintech
+// SPDX-FileCopyrightText: Copyright Contributors to the OpenFin8:EOpenCA
 // SPDX-License-Identifier: Apache-2.0
 
-// eFintech widget tests.
+// eOpenCA widget tests.
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:efintech/theme.dart';
+import 'package:eopenca/theme.dart';
 
 void main() {
   group('Sentin8 Theme', () {

@@ -1,4 +1,4 @@
-# eFintech FDX Recipient Certification Evidence
+# eOpenCA FDX Recipient Certification Evidence
 
 Status: All evidence produced - ready for certification review
 
@@ -14,7 +14,7 @@ Status: All evidence produced - ready for certification review
 |------|-------------|--------|
 | Account list from Bank8:FDX snapshots | useFdxAccounts → Sentin8:BFF → Bank8:FDX GET /v1/recipient/accounts | ✅ Verified |
 | Account detail from Bank8:FDX snapshots | Account detail screen with product terms, balances | ✅ Verified |
-| Account data mapping | Bank8:FDX snapshot → EFintechAccount DTO (masked numbers, types, status) | ✅ Verified |
+| Account data mapping | Bank8:FDX snapshot → EOpenCAAccount DTO (masked numbers, types, status) | ✅ Verified |
 
 ## Transaction Data Test Evidence
 | Test | Description | Status |
@@ -22,7 +22,7 @@ Status: All evidence produced - ready for certification review
 | Transaction history from Bank8:FDX snapshots | useFdxTransactions → Sentin8:BFF → Bank8:FDX GET /v1/recipient/accounts/{id}/transactions | ✅ Verified |
 | Cursor-based pagination | nextPageKey handling for large transaction sets | ✅ Verified |
 | Date range filtering | startDate/endDate query parameters | ✅ Verified |
-| Transaction data mapping | Bank8:FDX snapshot → EFintechTransaction DTO (date, amount, debit/credit, category) | ✅ Verified |
+| Transaction data mapping | Bank8:FDX snapshot → EOpenCATransaction DTO (date, amount, debit/credit, category) | ✅ Verified |
 
 ## Security Test Evidence
 | Test | Description | Status |

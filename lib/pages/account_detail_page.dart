@@ -1,10 +1,10 @@
 // SPDX-FileCopyrightText: Copyright Logically Magic Inc. <hello@logicallymagic.com>
 // SPDX-FileCopyrightText: Copyright Hamid Jahanzad <Hamid@Jahanzad.com>
-// SPDX-FileCopyrightText: Copyright Contributors to the Bank8:EFintech
+// SPDX-FileCopyrightText: Copyright Contributors to the OpenFin8:EOpenCA
 // SPDX-License-Identifier: Apache-2.0
 
-// eFintech account detail — full account details with transaction link.
-// Account detail screen — EFintechAccount DTO mapping.
+// eOpenCA account detail — full account details with transaction link.
+// Account detail screen — EOpenCAAccount DTO mapping.
 import 'package:flutter/material.dart';
 import '../theme.dart';
 import '../app_context.dart';
@@ -12,7 +12,7 @@ import '../url_router.dart';
 import 'transaction_list_page.dart';
 
 class AccountDetailPage extends StatelessWidget {
-  final EFintechContext appContext;
+  final EOpenCAContext appContext;
   final String accountId;
   final Map<String, dynamic> account;
   const AccountDetailPage({super.key, required this.appContext, required this.accountId, required this.account});

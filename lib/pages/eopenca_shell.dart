@@ -1,9 +1,9 @@
 // SPDX-FileCopyrightText: Copyright Logically Magic Inc. <hello@logicallymagic.com>
 // SPDX-FileCopyrightText: Copyright Hamid Jahanzad <Hamid@Jahanzad.com>
-// SPDX-FileCopyrightText: Copyright Contributors to the Bank8:EFintech
+// SPDX-FileCopyrightText: Copyright Contributors to the OpenFin8:EOpenCA
 // SPDX-License-Identifier: Apache-2.0
 
-// eFintech app shell — navigation between providers, consents, accounts, admin.
+// eOpenCA app shell — navigation between providers, consents, accounts, admin.
 import 'dart:js_interop';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
@@ -22,15 +22,15 @@ import '../fdx_hooks.dart';
 import 'admin/admin_dashboard_page.dart';
 import 'admin/admin_fdx_page.dart';
 
-class EFintechShell extends StatefulWidget {
-  const EFintechShell({super.key});
+class EOpenCAShell extends StatefulWidget {
+  const EOpenCAShell({super.key});
   @override
-  State<EFintechShell> createState() => _EFintechShellState();
+  State<EOpenCAShell> createState() => _EOpenCAShellState();
 }
 
-class _EFintechShellState extends State<EFintechShell> {
+class _EOpenCAShellState extends State<EOpenCAShell> {
   String _route = '/';
-  EFintechContext? _cached;
+  EOpenCAContext? _cached;
 
   @override
   void initState() {
@@ -53,7 +53,7 @@ class _EFintechShellState extends State<EFintechShell> {
 
   @override
   Widget build(BuildContext context) {
-    final appContext = EFintechContextProvider.of(context);
+    final appContext = EOpenCAContextProvider.of(context);
     if (appContext == null)
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
 
@@ -65,14 +65,14 @@ class _EFintechShellState extends State<EFintechShell> {
 
     if (!appContext.auth.isSignedIn) return LandingPage(appContext: appContext);
 
-    // eFintech admin surfaces are guarded by the app-declared
-    // `efintech:admin` role-marker scope. That scope is granted
-    // exclusively to members of the `efintech-admin` role, which App
+    // eOpenCA admin surfaces are guarded by the app-declared
+    // `eopenca:admin` role-marker scope. That scope is granted
+    // exclusively to members of the `eopenca-admin` role, which App
     // provisions in `auth_roles` when the listing is installed in a
     // target org/env. Exact match (not substring) — substring would
     // false-positive on `fdx:admin` held by data recipients.
     final isAdmin =
-        appContext.auth.state.scopes.contains('efintech:admin');
+        appContext.auth.state.scopes.contains('eopenca:admin');
 
     Widget content;
     switch (_route) {
@@ -114,7 +114,7 @@ class _EFintechShellState extends State<EFintechShell> {
     );
   }
 
-  Widget _buildSidebar(EFintechContext ctx, bool isAdmin) {
+  Widget _buildSidebar(EOpenCAContext ctx, bool isAdmin) {
     final appName = ctx.runtimeContext.displayName;
     final logoUrl = ctx.runtimeContext.logoIconUrl.isNotEmpty
         ? ctx.runtimeContext.logoIconUrl
@@ -198,7 +198,7 @@ class _EFintechShellState extends State<EFintechShell> {
 /// Initial for the sidebar avatar. Falls back to `'?'` when the BFF
 /// session omits `displayName`/`email` (both can be empty strings), so we
 /// never index an empty string — see the matching guard in eBank's shell.
-String _avatarInitial(EFintechUser? user) {
+String _avatarInitial(EOpenCAUser? user) {
   final display = user?.displayName;
   if (display != null && display.isNotEmpty) return display[0].toUpperCase();
   final email = user?.email;
@@ -208,7 +208,7 @@ String _avatarInitial(EFintechUser? user) {
 
 /// Resolve the most recent active consent_id from the FDX consents hook
 /// so the account list page can filter to only consented accounts.
-String? _latestConsentId(EFintechContext ctx) {
+String? _latestConsentId(EOpenCAContext ctx) {
   try {
     final hook = FdxConsentsHook(ctx.services!.fdx);
     // Synchronously check if consents were already fetched by the

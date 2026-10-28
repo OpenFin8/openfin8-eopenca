@@ -1,16 +1,16 @@
 // SPDX-FileCopyrightText: Copyright Logically Magic Inc. <hello@logicallymagic.com>
 // SPDX-FileCopyrightText: Copyright Hamid Jahanzad <Hamid@Jahanzad.com>
-// SPDX-FileCopyrightText: Copyright Contributors to the Bank8:EFintech
+// SPDX-FileCopyrightText: Copyright Contributors to the OpenFin8:EOpenCA
 // SPDX-License-Identifier: Apache-2.0
 
-// eFintech admin dashboard — instance status, env vars, OAuth client summary.
+// eOpenCA admin dashboard — instance status, env vars, OAuth client summary.
 // Admin dashboard — instance status, env vars, DCR summary.
 import 'package:flutter/material.dart';
 import '../../theme.dart';
 import '../../app_context.dart';
 
 class AdminDashboardPage extends StatelessWidget {
-  final EFintechContext appContext;
+  final EOpenCAContext appContext;
   const AdminDashboardPage({super.key, required this.appContext});
 
   @override
@@ -41,7 +41,7 @@ class AdminDashboardPage extends StatelessWidget {
           GlassPanel(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             const Text('OAuth Client (DCR)', style: Sentin8Text.headlineMedium),
             const SizedBox(height: Sentin8Spacing.md),
-            const Text('DCR is mandatory for all eFintech instances. The OAuth client was registered during setup.', style: Sentin8Text.bodyMedium),
+            const Text('DCR is mandatory for all eOpenCA instances. The OAuth client was registered during setup.', style: Sentin8Text.bodyMedium),
             const SizedBox(height: Sentin8Spacing.md),
             Row(children: [const SizedBox(width: 160, child: Text('Registration Status', style: Sentin8Text.labelSmall)), Icon(Icons.check_circle, color: Sentin8Colors.success, size: 16), const SizedBox(width: Sentin8Spacing.xs), const Text('Registered', style: Sentin8Text.bodyMedium)]),
           ])),

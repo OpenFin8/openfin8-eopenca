@@ -1,9 +1,9 @@
 // SPDX-FileCopyrightText: Copyright Logically Magic Inc. <hello@logicallymagic.com>
 // SPDX-FileCopyrightText: Copyright Hamid Jahanzad <Hamid@Jahanzad.com>
-// SPDX-FileCopyrightText: Copyright Contributors to the Bank8:EFintech
+// SPDX-FileCopyrightText: Copyright Contributors to the OpenFin8:EOpenCA
 // SPDX-License-Identifier: Apache-2.0
 
-// eFintech app context — central runtime state.
+// eOpenCA app context — central runtime state.
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:web/web.dart' as web;
@@ -11,28 +11,28 @@ import 'bootstrap.dart';
 import 'auth_provider.dart';
 import 'services.dart';
 
-class EFintechContext extends ChangeNotifier {
+class EOpenCAContext extends ChangeNotifier {
   final AppRuntimeContext runtimeContext;
   final AuthProvider auth;
-  EFintechServices? services;
+  EOpenCAServices? services;
   final String correlationId;
 
-  EFintechContext._({required this.runtimeContext, required this.auth, required this.correlationId}) {
+  EOpenCAContext._({required this.runtimeContext, required this.auth, required this.correlationId}) {
     auth.addListener(_onAuthChanged);
     _updateServices();
   }
 
-  static Future<EFintechContext> create(AppRuntimeContext runtimeContext) async {
+  static Future<EOpenCAContext> create(AppRuntimeContext runtimeContext) async {
     final corrId = generateCorrelationId();
     final auth = AuthProvider(bffBaseUrl: runtimeContext.bffBaseUrl, authDomain: runtimeContext.authDomain);
     auth.onRedirect = (String url) { web.window.location.href = url; };
     await auth.init();
-    return EFintechContext._(runtimeContext: runtimeContext, auth: auth, correlationId: corrId);
+    return EOpenCAContext._(runtimeContext: runtimeContext, auth: auth, correlationId: corrId);
   }
 
   void _onAuthChanged() { _updateServices(); notifyListeners(); }
   void _updateServices() {
-    services = EFintechServices(bffBaseUrl: runtimeContext.bffBaseUrl, csrfToken: auth.csrfToken, correlationId: correlationId);
+    services = EOpenCAServices(bffBaseUrl: runtimeContext.bffBaseUrl, csrfToken: auth.csrfToken, correlationId: correlationId);
   }
 
   bool isFeatureEnabled(String feature) => runtimeContext.featureFlags[feature] ?? true;
@@ -40,24 +40,24 @@ class EFintechContext extends ChangeNotifier {
   @override
   void dispose() { auth.removeListener(_onAuthChanged); auth.dispose(); super.dispose(); }
 }
-class EFintechContextProvider extends StatefulWidget {
+class EOpenCAContextProvider extends StatefulWidget {
   final AppRuntimeContext runtimeContext;
   final Widget child;
-  const EFintechContextProvider({super.key, required this.runtimeContext, required this.child});
+  const EOpenCAContextProvider({super.key, required this.runtimeContext, required this.child});
   @override
-  State<EFintechContextProvider> createState() => _EFintechContextProviderState();
-  static EFintechContext? of(BuildContext context) {
-    final inh = context.dependOnInheritedWidgetOfExactType<_EFintechContextInherited>();
-    return inh?.eFintechContext;
+  State<EOpenCAContextProvider> createState() => _EOpenCAContextProviderState();
+  static EOpenCAContext? of(BuildContext context) {
+    final inh = context.dependOnInheritedWidgetOfExactType<_EOpenCAContextInherited>();
+    return inh?.eOpenCAContext;
   }
 }
 
-class _EFintechContextProviderState extends State<EFintechContextProvider> {
-  EFintechContext? _context;
+class _EOpenCAContextProviderState extends State<EOpenCAContextProvider> {
+  EOpenCAContext? _context;
   @override
   void initState() { super.initState(); _initContext(); }
   Future<void> _initContext() async {
-    final ctx = await EFintechContext.create(widget.runtimeContext);
+    final ctx = await EOpenCAContext.create(widget.runtimeContext);
     if (mounted) setState(() => _context = ctx);
   }
   @override
@@ -65,14 +65,14 @@ class _EFintechContextProviderState extends State<EFintechContextProvider> {
   @override
   Widget build(BuildContext context) {
     if (_context == null) return const Scaffold(body: Center(child: CircularProgressIndicator()));
-    return _EFintechContextInherited(eFintechContext: _context!, child: widget.child);
+    return _EOpenCAContextInherited(eOpenCAContext: _context!, child: widget.child);
   }
 }
 
-class _EFintechContextInherited extends InheritedWidget {
-  final EFintechContext eFintechContext;
+class _EOpenCAContextInherited extends InheritedWidget {
+  final EOpenCAContext eOpenCAContext;
   final Widget child;
-  const _EFintechContextInherited({required this.eFintechContext, required this.child}) : super(child: child);
+  const _EOpenCAContextInherited({required this.eOpenCAContext, required this.child}) : super(child: child);
   @override
-  bool updateShouldNotify(_EFintechContextInherited old) => eFintechContext != old.eFintechContext;
+  bool updateShouldNotify(_EOpenCAContextInherited old) => eOpenCAContext != old.eOpenCAContext;
 }

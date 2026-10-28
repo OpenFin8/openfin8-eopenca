@@ -1,10 +1,10 @@
 // SPDX-FileCopyrightText: Copyright Logically Magic Inc. <hello@logicallymagic.com>
 // SPDX-FileCopyrightText: Copyright Hamid Jahanzad <Hamid@Jahanzad.com>
-// SPDX-FileCopyrightText: Copyright Contributors to the Bank8:EFintech
+// SPDX-FileCopyrightText: Copyright Contributors to the OpenFin8:EOpenCA
 // SPDX-License-Identifier: Apache-2.0
 
-// eFintech FDX hooks — FDX Data Recipient API access via BFF proxy.
-// eFintech is an FDX Data Recipient — it consumes external provider data
+// eOpenCA FDX hooks — FDX Data Recipient API access via BFF proxy.
+// eOpenCA is an FDX Data Recipient — it consumes external provider data
 // through FDX. All calls go through BFF → FDX recipient API
 // (/v1/recipient/...).
 import 'package:flutter/foundation.dart';

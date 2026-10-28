@@ -1,9 +1,9 @@
 // SPDX-FileCopyrightText: Copyright Logically Magic Inc. <hello@logicallymagic.com>
 // SPDX-FileCopyrightText: Copyright Hamid Jahanzad <Hamid@Jahanzad.com>
-// SPDX-FileCopyrightText: Copyright Contributors to the Bank8:EFintech
+// SPDX-FileCopyrightText: Copyright Contributors to the OpenFin8:EOpenCA
 // SPDX-License-Identifier: Apache-2.0
 
-// eFintech main entry point — bootstrap, runtime context, app shell.
+// eOpenCA main entry point — bootstrap, runtime context, app shell.
 import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
 import 'package:web/web.dart' as web;
@@ -15,16 +15,16 @@ import 'pages/pages.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SemanticsBinding.instance.ensureSemantics();
-  runApp(const EFintechApp());
+  runApp(const EOpenCAApp());
 }
 
-class EFintechApp extends StatefulWidget {
-  const EFintechApp({super.key});
+class EOpenCAApp extends StatefulWidget {
+  const EOpenCAApp({super.key});
   @override
-  State<EFintechApp> createState() => _EFintechAppState();
+  State<EOpenCAApp> createState() => _EOpenCAAppState();
 }
 
-class _EFintechAppState extends State<EFintechApp> {
+class _EOpenCAAppState extends State<EOpenCAApp> {
   AppRuntimeContext? _ctx;
   String? _err;
 
@@ -47,7 +47,7 @@ class _EFintechAppState extends State<EFintechApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: _ctx?.displayName ?? 'eFintech',
+      title: _ctx?.displayName ?? 'eOpenCA',
       theme: _ctx != null ? sentin8ThemeForContext(_ctx!) : sentin8Theme(),
       debugShowCheckedModeBanner: false,
       home: _buildHome(),
@@ -56,10 +56,10 @@ class _EFintechAppState extends State<EFintechApp> {
   }
 
   Widget _buildHome() {
-    if (_err != null) return BootstrapErrorPage(error: _err!, appName: 'eFintech');
-    if (_ctx == null) return const BootstrapLoaderPage(appName: 'eFintech');
-    return EFintechContextProvider(
-        runtimeContext: _ctx!, child: const EFintechShell());
+    if (_err != null) return BootstrapErrorPage(error: _err!, appName: 'eOpenCA');
+    if (_ctx == null) return const BootstrapLoaderPage(appName: 'eOpenCA');
+    return EOpenCAContextProvider(
+        runtimeContext: _ctx!, child: const EOpenCAShell());
   }
 
   Route<dynamic>? _generateRoute(RouteSettings settings) => null;

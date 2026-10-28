@@ -1,9 +1,9 @@
 // SPDX-FileCopyrightText: Copyright Logically Magic Inc. <hello@logicallymagic.com>
 // SPDX-FileCopyrightText: Copyright Hamid Jahanzad <Hamid@Jahanzad.com>
-// SPDX-FileCopyrightText: Copyright Contributors to the Bank8:EFintech
+// SPDX-FileCopyrightText: Copyright Contributors to the OpenFin8:EOpenCA
 // SPDX-License-Identifier: Apache-2.0
 
-// eFintech account list — consented accounts from FDX snapshots.
+// eOpenCA account list — consented accounts from FDX snapshots.
 // Account list — capability badges and account data mapping.
 import 'package:flutter/material.dart';
 import '../theme.dart';
@@ -13,7 +13,7 @@ import '../url_router.dart';
 import 'account_detail_page.dart';
 
 class AccountListPage extends StatefulWidget {
-  final EFintechContext appContext;
+  final EOpenCAContext appContext;
   /// Optional consent_id to filter accounts to only those the customer
   /// selected during the consent flow. If null, all accounts are shown.
   final String? consentId;

@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: Copyright Logically Magic Inc. <hello@logicallymagic.com>
 # SPDX-FileCopyrightText: Copyright Hamid Jahanzad <Hamid@Jahanzad.com>
-# SPDX-FileCopyrightText: Copyright Contributors to the Bank8:EFintech
+# SPDX-FileCopyrightText: Copyright Contributors to the OpenFin8:EOpenCA
 # SPDX-License-Identifier: Apache-2.0
 
 FROM ghcr.io/cirruslabs/flutter:3.22.0 AS build

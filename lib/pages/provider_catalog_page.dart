@@ -1,9 +1,9 @@
 // SPDX-FileCopyrightText: Copyright Logically Magic Inc. <hello@logicallymagic.com>
 // SPDX-FileCopyrightText: Copyright Hamid Jahanzad <Hamid@Jahanzad.com>
-// SPDX-FileCopyrightText: Copyright Contributors to the Bank8:EFintech
+// SPDX-FileCopyrightText: Copyright Contributors to the OpenFin8:EOpenCA
 // SPDX-License-Identifier: Apache-2.0
 
-// eFintech provider catalog — browse available external FDX data providers.
+// eOpenCA provider catalog — browse available external FDX data providers.
 // Provider catalog screen.
 import 'package:flutter/material.dart';
 import '../theme.dart';
@@ -13,7 +13,7 @@ import '../url_router.dart';
 import 'provider_detail_page.dart';
 
 class ProviderCatalogPage extends StatefulWidget {
-  final EFintechContext appContext;
+  final EOpenCAContext appContext;
   const ProviderCatalogPage({super.key, required this.appContext});
   @override
   State<ProviderCatalogPage> createState() => _ProviderCatalogPageState();

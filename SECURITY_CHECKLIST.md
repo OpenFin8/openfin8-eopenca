@@ -1,4 +1,4 @@
-# eFintech Security Verification Checklist
+# eOpenCA Security Verification Checklist
 
 ## Token Security
 - [ ] No OAuth access/refresh tokens on the Flutter client
@@ -12,11 +12,11 @@
 - [ ] No unauthenticated requests accepted
 
 ## Sentin8:DB Table Compliance
-- [ ] EFintechCustomerProfile includes org_id, env_id, id, created_at, updated_at, resource_version
-- [ ] EFintechProviderConnection includes all mandatory system columns
-- [ ] EFintechAccountView includes all mandatory system columns
-- [ ] EFintechTransactionView includes all mandatory system columns
-- [ ] EFintechRefreshJob includes all mandatory system columns
+- [ ] EOpenCACustomerProfile includes org_id, env_id, id, created_at, updated_at, resource_version
+- [ ] EOpenCAProviderConnection includes all mandatory system columns
+- [ ] EOpenCAAccountView includes all mandatory system columns
+- [ ] EOpenCATransactionView includes all mandatory system columns
+- [ ] EOpenCARefreshJob includes all mandatory system columns
 
 ## RLS Context
 - [ ] RLS context set before every Sentin8:DB query (6 session variables)
@@ -38,15 +38,15 @@
 - [ ] OAuth client secrets stored as secret references
 
 ## No Direct External Provider Calls
-- [ ] eFintech never calls external FDX providers directly
+- [ ] eOpenCA never calls external FDX providers directly
 - [ ] All external provider communication through Bank8:FDX recipient orchestration
 
 ## No Raw External Tokens
-- [ ] eFintech never receives raw external provider tokens
+- [ ] eOpenCA never receives raw external provider tokens
 - [ ] Sentin8:Auth stores token material as secret references
 - [ ] Bank8:FDX stores grant references (not raw tokens)
 
 ## CI Guards (4.3.10-4.3.12)
 - [ ] CI detects outbound HTTP calls to non-Sentin8 hosts
 - [ ] CI detects native PostgreSQL drivers, raw SQL, ORM bypass, direct storage SDK usage
-- [ ] CI detects token-like strings in eFintech code and config
+- [ ] CI detects token-like strings in eOpenCA code and config

@@ -1,9 +1,9 @@
 // SPDX-FileCopyrightText: Copyright Logically Magic Inc. <hello@logicallymagic.com>
 // SPDX-FileCopyrightText: Copyright Hamid Jahanzad <Hamid@Jahanzad.com>
-// SPDX-FileCopyrightText: Copyright Contributors to the Bank8:EFintech
+// SPDX-FileCopyrightText: Copyright Contributors to the OpenFin8:EOpenCA
 // SPDX-License-Identifier: Apache-2.0
 
-// eFintech consent flow page — consent start and status polling.
+// eOpenCA consent flow page — consent start and status polling.
 // Consent flow — consent status polling.
 import 'package:flutter/material.dart';
 import '../theme.dart';
@@ -11,7 +11,7 @@ import '../app_context.dart';
 import '../fdx_hooks.dart';
 
 class ConsentFlowPage extends StatefulWidget {
-  final EFintechContext appContext;
+  final EOpenCAContext appContext;
   final String? dataProviderId;
   const ConsentFlowPage({super.key, required this.appContext, this.dataProviderId});
   @override

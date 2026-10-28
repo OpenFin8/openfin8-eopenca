@@ -1,13 +1,13 @@
 // SPDX-FileCopyrightText: Copyright Logically Magic Inc. <hello@logicallymagic.com>
 // SPDX-FileCopyrightText: Copyright Hamid Jahanzad <Hamid@Jahanzad.com>
-// SPDX-FileCopyrightText: Copyright Contributors to the Bank8:EFintech
+// SPDX-FileCopyrightText: Copyright Contributors to the OpenFin8:EOpenCA
 // SPDX-License-Identifier: Apache-2.0
 
-// eFintech BFF scope whitelist configuration
+// eOpenCA BFF scope whitelist configuration
 // BFF scope whitelist per app instance.
-// eFintech only needs FDX recipient scopes + DB/Buck - no Ledger/Payments (read-only recipient).
+// eOpenCA only needs FDX recipient scopes + DB/Buck - no Ledger/Payments (read-only recipient).
 
-/// ScopeWhitelist defines the allowed scopes and services for eFintech BFF instances.
+/// ScopeWhitelist defines the allowed scopes and services for eOpenCA BFF instances.
 #[derive(Debug, Clone)]
 pub struct ScopeWhitelist {
     pub app_slug: String,
@@ -16,13 +16,13 @@ pub struct ScopeWhitelist {
 }
 
 pub static E_FINTECH_SCOPE_WHITELIST: ScopeWhitelist = ScopeWhitelist {
-    app_slug: "efintech".to_string(),
+    app_slug: "eopenca".to_string(),
     allowed_scopes: vec![
         "openid".to_string(),
         "profile".to_string(),
         "email".to_string(),
-        "bank8:fdx:recipient:read".to_string(),
-        "bank8:fdx:recipient:write".to_string(),
+        "openfin8:ca:recipient:read".to_string(),
+        "openfin8:ca:recipient:write".to_string(),
         "db:data:read".to_string(),
         "db:data:write".to_string(),
         "storage:env:read".to_string(),

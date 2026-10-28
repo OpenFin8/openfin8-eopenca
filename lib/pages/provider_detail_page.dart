@@ -1,9 +1,9 @@
 // SPDX-FileCopyrightText: Copyright Logically Magic Inc. <hello@logicallymagic.com>
 // SPDX-FileCopyrightText: Copyright Hamid Jahanzad <Hamid@Jahanzad.com>
-// SPDX-FileCopyrightText: Copyright Contributors to the Bank8:EFintech
+// SPDX-FileCopyrightText: Copyright Contributors to the OpenFin8:EOpenCA
 // SPDX-License-Identifier: Apache-2.0
 
-// eFintech provider detail — provider metadata + consent start.
+// eOpenCA provider detail — provider metadata + consent start.
 // Consent-start contract: see DESIGN.md §2 (recipient consent lifecycle).
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +14,7 @@ import '../url_router.dart';
 import 'package:web/web.dart' as web;
 
 class ProviderDetailPage extends StatefulWidget {
-  final EFintechContext appContext;
+  final EOpenCAContext appContext;
   final Map<String, dynamic> provider;
   const ProviderDetailPage({super.key, required this.appContext, required this.provider});
   @override
@@ -23,7 +23,7 @@ class ProviderDetailPage extends StatefulWidget {
 
 class _ProviderDetailPageState extends State<ProviderDetailPage> {
   String _duration = 'PERSISTENT';
-  final _scopes = ['bank8:fdx:accountbasic:read', 'bank8:fdx:accountdetailed:read', 'bank8:fdx:transactions:read'];
+  final _scopes = ['openfin8:ca:accountbasic:read', 'openfin8:ca:accountdetailed:read', 'openfin8:ca:transactions:read'];
   bool _starting = false;
 
   Future<void> _startConsent() async {
@@ -43,7 +43,7 @@ class _ProviderDetailPageState extends State<ProviderDetailPage> {
       return;
     }
     final providerId = widget.provider['id']?.toString() ?? '';
-    // app_redirect_uri (the eFintech app origin) rides inside the OAuth
+    // app_redirect_uri (the eOpenCA app origin) rides inside the OAuth
     // `state` on the PAR → authorize → callback round-trip so FDX's
     // callback can send the customer back here afterwards.
     final appOrigin = web.window.location.origin;

@@ -1,18 +1,18 @@
-# Bank8:eFintech - Detailed Design Document
+# Bank8:eOpenCA - Detailed Design Document
 
 Overview-level material lives in `README.md`; the business view lives in
 `BUSINESS.md`.
 
 ## 1. Scope & Context
 
-**What eFintech owns:** the recipient-side presentation layer; the
-client-side state composition (`EFintechContext`); the FDX recipient
+**What eOpenCA owns:** the recipient-side presentation layer; the
+client-side state composition (`EOpenCAContext`); the FDX recipient
 journeys (provider catalog, provider detail, consent flow/monitoring,
 consented accounts + transactions); the admin surface (instance overview,
 FDX recipient-side administration); the listing manifest (`app8-listing.json`,
 mirrored in `app.json`) and BFF scope whitelist (`bff8/scope_whitelist.rs`).
 
-**What eFintech does NOT own (delegates):** identity and the hosted consent
+**What eOpenCA does NOT own (delegates):** identity and the hosted consent
 UI (Sentin8:Auth); the FDX data plane, consent enforcement, and retrieval
 (Bank8:FDX); persistence and object access (Sentin8:DB, storage - via BFF);
 session/token custody (Sentin8:BFF); any ledger/payments surface (a recipient
@@ -20,7 +20,7 @@ never touches the provider's core directly).
 
 ```mermaid
 graph TD
-    B[Customer / fintech user browser] --> EF[Bank8:eFintech Flutter app]
+    B[Customer / fintech user browser] --> EF[Bank8:eOpenCA Flutter app]
     EF -->|session cookie + CSRF| BFF[Sentin8:BFF bff domain]
     BFF --> FDX1[Bank8:FDX recipient APIs]
     BFF --> AUTH[Sentin8:Auth]
@@ -34,11 +34,11 @@ graph TD
 
 ```mermaid
 graph TD
-    subgraph SGj06uab["eFintech process (Flutter web)"]
-        MAIN[main.dart - bootstrap + theme] --> CTX[EFintechContext inherited provider]
-        CTX --> SVC[EFintechServices fdx + db + storage]
+    subgraph SGj06uab["eOpenCA process (Flutter web)"]
+        MAIN[main.dart - bootstrap + theme] --> CTX[EOpenCAContext inherited provider]
+        CTX --> SVC[EOpenCAServices fdx + db + storage]
         CTX --> AUTH[AuthProvider - BFF session]
-        SHELL[efintech_shell - hash router + sidebar guard] --> PAGES[pages/*]
+        SHELL[eopenca_shell - hash router + sidebar guard] --> PAGES[pages/*]
         PAGES --> HOOKS[fdx_hooks.dart DataState adapters]
         HOOKS --> SVC
         PAGES --> ADMIN[pages/admin - instance / fdx]
@@ -94,10 +94,10 @@ sequenceDiagram
 
 ## 3. Data Model
 
-eFintech persists **no tables of its own**. All state is service-owned and
+eOpenCA persists **no tables of its own**. All state is service-owned and
 referenced by id:
 
-| Domain object | Owned by | eFintech access |
+| Domain object | Owned by | eOpenCA access |
 |---|---|---|
 | Provider catalog entries | Bank8:FDX (`sentin8_app_store_listings` / provider profile registry) | read via `GET /v1/recipient/providers` |
 | Consents (customer ↔ provider) | Bank8:FDX consent registry | start/poll/revoke/refresh via `/v1/recipient/consents*` |
@@ -123,14 +123,14 @@ app itself has no listening port.
 | Admin instance | runtime context only | staff | no backend calls |
 | Admin FDX | hooks as above | staff | recipient-side monitoring |
 
-Event flow eFintech participates in (consumer side only; consent lifecycle
+Event flow eOpenCA participates in (consumer side only; consent lifecycle
 events are emitted upstream by Bank8:FDX and reflected by polling):
 
 ```mermaid
 flowchart LR
     C[Customer authorizes in hosted consent UI] --> AUTH[Sentin8:Auth]
     AUTH -->|consent lifecycle| FDX[Bank8:FDX consent registry]
-    FDX -->|consent status| POLL[eFintech bounded poll GET recipient/consents]
+    FDX -->|consent status| POLL[eOpenCA bounded poll GET recipient/consents]
     POLL --> UI[ConsentFlowPage state]
 ```
 
@@ -218,4 +218,4 @@ graph TD
 
 ---
 
-**Architecture & Design:** bank8:efintech and its underlying concepts were designed by [Hamid Jahanzad](https://www.linkedin.com/in/hamidjahanzad/).
+**Architecture & Design:** bank8:eopenca and its underlying concepts were designed by [Hamid Jahanzad](https://www.linkedin.com/in/hamidjahanzad/).

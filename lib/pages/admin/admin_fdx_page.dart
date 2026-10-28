@@ -1,9 +1,9 @@
 // SPDX-FileCopyrightText: Copyright Logically Magic Inc. <hello@logicallymagic.com>
 // SPDX-FileCopyrightText: Copyright Hamid Jahanzad <Hamid@Jahanzad.com>
-// SPDX-FileCopyrightText: Copyright Contributors to the Bank8:EFintech
+// SPDX-FileCopyrightText: Copyright Contributors to the OpenFin8:EOpenCA
 // SPDX-License-Identifier: Apache-2.0
 
-// eFintech admin FDX page — provider catalog management, consent overview, retrieval job monitoring.
+// eOpenCA admin FDX page — provider catalog management, consent overview, retrieval job monitoring.
 // Admin FDX — provider catalog, consent overview, retrieval monitoring.
 import 'package:flutter/material.dart';
 import '../../theme.dart';
@@ -11,7 +11,7 @@ import '../../app_context.dart';
 import '../../fdx_hooks.dart';
 
 class AdminFdxPage extends StatefulWidget {
-  final EFintechContext appContext;
+  final EOpenCAContext appContext;
   const AdminFdxPage({super.key, required this.appContext});
   @override
   State<AdminFdxPage> createState() => _AdminFdxPageState();

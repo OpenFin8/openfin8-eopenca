@@ -1,12 +1,12 @@
 // SPDX-FileCopyrightText: Copyright Logically Magic Inc. <hello@logicallymagic.com>
 // SPDX-FileCopyrightText: Copyright Hamid Jahanzad <Hamid@Jahanzad.com>
-// SPDX-FileCopyrightText: Copyright Contributors to the Bank8:EFintech
+// SPDX-FileCopyrightText: Copyright Contributors to the OpenFin8:EOpenCA
 // SPDX-License-Identifier: Apache-2.0
 
-// eFintech pages barrel export
+// eOpenCA pages barrel export
 export 'bootstrap_loader_page.dart';
 export 'bootstrap_error_page.dart';
-export 'efintech_shell.dart';
+export 'eopenca_shell.dart';
 export 'landing_page.dart';
 export 'dashboard_page.dart';
 export 'provider_catalog_page.dart';
