@@ -3,8 +3,8 @@
 // SPDX-FileCopyrightText: Copyright Contributors to the OpenFin8:EOpenCA
 // SPDX-License-Identifier: Apache-2.0
 
-// eOpenCA FDX hooks — FDX Data Recipient API access via BFF proxy.
-// eOpenCA is an FDX Data Recipient — it consumes external provider data
+// eOpenCA FDX hooks - FDX Data Recipient API access via BFF proxy.
+// eOpenCA is an FDX Data Recipient - it consumes external provider data
 // through FDX. All calls go through BFF → FDX recipient API
 // (/v1/recipient/...).
 import 'package:flutter/foundation.dart';
@@ -18,7 +18,7 @@ class DataState<T> {
   bool get hasData => data != null;
 }
 
-/// useFdxProviders — fetch FDX recipient provider catalog.
+/// useFdxProviders - fetch FDX recipient provider catalog.
 /// Providers via BFF → FDX GET /v1/recipient/providers.
 class FdxProvidersHook extends ChangeNotifier {
   final BffApiClient fdx;
@@ -40,7 +40,7 @@ class FdxProvidersHook extends ChangeNotifier {
   }
 }
 
-/// useFdxConsents — fetch customer's FDX consents (as a data recipient's customer).
+/// useFdxConsents - fetch customer's FDX consents (as a data recipient's customer).
 /// Consents via BFF → FDX GET /v1/recipient/consents.
 class FdxConsentsHook extends ChangeNotifier {
   final BffApiClient fdx;
@@ -93,7 +93,7 @@ class FdxConsentsHook extends ChangeNotifier {
   }
 }
 
-/// useFdxAccounts — fetch consented accounts from FDX snapshots.
+/// useFdxAccounts - fetch consented accounts from FDX snapshots.
 /// Accounts via BFF → FDX GET /v1/recipient/accounts.
 /// If consentId is provided, only the accounts the customer selected
 /// during the consent flow are returned (fdx_consent_resources filter).
@@ -121,7 +121,7 @@ class FdxAccountsHook extends ChangeNotifier {
   }
 }
 
-/// useFdxTransactions — fetch transaction history for an account from FDX snapshots.
+/// useFdxTransactions - fetch transaction history for an account from FDX snapshots.
 /// Transactions via BFF → FDX GET /v1/recipient/accounts/{id}/transactions.
 class FdxTransactionsHook extends ChangeNotifier {
   final BffApiClient fdx;

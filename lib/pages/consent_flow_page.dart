@@ -3,8 +3,8 @@
 // SPDX-FileCopyrightText: Copyright Contributors to the OpenFin8:EOpenCA
 // SPDX-License-Identifier: Apache-2.0
 
-// eOpenCA consent flow page — consent start and status polling.
-// Consent flow — consent status polling.
+// eOpenCA consent flow page - consent start and status polling.
+// Consent flow - consent status polling.
 import 'package:flutter/material.dart';
 import '../theme.dart';
 import '../app_context.dart';

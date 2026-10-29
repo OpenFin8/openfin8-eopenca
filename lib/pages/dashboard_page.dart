@@ -3,8 +3,8 @@
 // SPDX-FileCopyrightText: Copyright Contributors to the OpenFin8:EOpenCA
 // SPDX-License-Identifier: Apache-2.0
 
-// eOpenCA dashboard — FdxRecipientSummaryCard showing connected providers and consent summary.
-// Dashboard — provider and consent summary.
+// eOpenCA dashboard - FdxRecipientSummaryCard showing connected providers and consent summary.
+// Dashboard - provider and consent summary.
 import 'package:flutter/material.dart';
 import '../theme.dart';
 import '../app_context.dart';

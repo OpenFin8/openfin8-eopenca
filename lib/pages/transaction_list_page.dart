@@ -3,8 +3,8 @@
 // SPDX-FileCopyrightText: Copyright Contributors to the OpenFin8:EOpenCA
 // SPDX-License-Identifier: Apache-2.0
 
-// eOpenCA transaction list — paginated transaction history from FDX snapshots.
-// Transaction list — cursor pagination, date filtering.
+// eOpenCA transaction list - paginated transaction history from FDX snapshots.
+// Transaction list - cursor pagination, date filtering.
 import 'package:flutter/material.dart';
 import '../theme.dart';
 import '../app_context.dart';

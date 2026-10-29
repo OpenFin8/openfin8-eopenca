@@ -3,8 +3,8 @@
 // SPDX-FileCopyrightText: Copyright Contributors to the OpenFin8:EOpenCA
 // SPDX-License-Identifier: Apache-2.0
 
-// eOpenCA consent dashboard — view all active consents, revoke, reauthorize.
-// Consent dashboard — status badge, revocation, refresh.
+// eOpenCA consent dashboard - view all active consents, revoke, reauthorize.
+// Consent dashboard - status badge, revocation, refresh.
 import 'package:flutter/material.dart';
 import '../theme.dart';
 import '../app_context.dart';

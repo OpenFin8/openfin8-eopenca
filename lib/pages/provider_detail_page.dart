@@ -3,7 +3,7 @@
 // SPDX-FileCopyrightText: Copyright Contributors to the OpenFin8:EOpenCA
 // SPDX-License-Identifier: Apache-2.0
 
-// eOpenCA provider detail — provider metadata + consent start.
+// eOpenCA provider detail - provider metadata + consent start.
 // Consent-start contract: see DESIGN.md §2 (recipient consent lifecycle).
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +30,7 @@ class _ProviderDetailPageState extends State<ProviderDetailPage> {
     setState(() => _starting = true);
     // Consent start (browser-redirect contract, DESIGN.md §2):
     // POST /proxy/fdx/v1/recipient/consents/start through the BFF proxy
-    // (session cookie + CSRF) — an XHR, NOT a browser redirect. The JSON
+    // (session cookie + CSRF) - an XHR, NOT a browser redirect. The JSON
     // response carries `authorization_url`; the app itself then performs
     // the browser navigation with location.replace so the provider's
     // consent UI opens in this tab. There is no GET BFF consent route.
@@ -39,7 +39,7 @@ class _ProviderDetailPageState extends State<ProviderDetailPage> {
     if (fdx == null || user == null) {
       setState(() => _starting = false);
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text('Session not ready — please try again')));
+          content: Text('Session not ready - please try again')));
       return;
     }
     final providerId = widget.provider['id']?.toString() ?? '';

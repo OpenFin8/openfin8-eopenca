@@ -3,8 +3,8 @@
 // SPDX-FileCopyrightText: Copyright Contributors to the OpenFin8:EOpenCA
 // SPDX-License-Identifier: Apache-2.0
 
-// eOpenCA account list — consented accounts from FDX snapshots.
-// Account list — capability badges and account data mapping.
+// eOpenCA account list - consented accounts from FDX snapshots.
+// Account list - capability badges and account data mapping.
 import 'package:flutter/material.dart';
 import '../theme.dart';
 import '../app_context.dart';

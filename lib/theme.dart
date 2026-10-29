@@ -3,7 +3,7 @@
 // SPDX-FileCopyrightText: Copyright Contributors to the OpenFin8:EOpenCA
 // SPDX-License-Identifier: Apache-2.0
 
-// eOpenCA theme — re-exported from sentin8.
+// eOpenCA theme - re-exported from sentin8.
 export 'package:sentin8/sentin8.dart'
     show
         Sentin8Colors,

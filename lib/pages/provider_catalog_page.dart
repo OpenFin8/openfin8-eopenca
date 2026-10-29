@@ -3,7 +3,7 @@
 // SPDX-FileCopyrightText: Copyright Contributors to the OpenFin8:EOpenCA
 // SPDX-License-Identifier: Apache-2.0
 
-// eOpenCA provider catalog — browse available external FDX data providers.
+// eOpenCA provider catalog - browse available external FDX data providers.
 // Provider catalog screen.
 import 'package:flutter/material.dart';
 import '../theme.dart';

@@ -3,8 +3,8 @@
 // SPDX-FileCopyrightText: Copyright Contributors to the OpenFin8:EOpenCA
 // SPDX-License-Identifier: Apache-2.0
 
-// eOpenCA account detail — full account details with transaction link.
-// Account detail screen — EOpenCAAccount DTO mapping.
+// eOpenCA account detail - full account details with transaction link.
+// Account detail screen - EOpenCAAccount DTO mapping.
 import 'package:flutter/material.dart';
 import '../theme.dart';
 import '../app_context.dart';

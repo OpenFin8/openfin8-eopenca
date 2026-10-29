@@ -3,7 +3,7 @@
 // SPDX-FileCopyrightText: Copyright Contributors to the OpenFin8:EOpenCA
 // SPDX-License-Identifier: Apache-2.0
 
-// eOpenCA services — BFF proxy access layer for FDX, DB, Storage.
+// eOpenCA services - BFF proxy access layer for FDX, DB, Storage.
 //
 // BffApiClient, ApiResponse, and generateCorrelationId are re-exported
 // from sentin8. EOpenCAServices is app-specific.

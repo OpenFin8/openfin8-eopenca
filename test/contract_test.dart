@@ -26,7 +26,7 @@ void main() {
   });
 
   group('EOpenCAServices', () {
-    test('Creates only 3 service clients (no ledger/payments — read-only recipient)', () {
+    test('Creates only 3 service clients (no ledger/payments - read-only recipient)', () {
       final s = EOpenCAServices(bffBaseUrl: 'https://bff.bank8-eopenca.prod.acme.local.sentin8.dev');
       expect(s.fdx.serviceName, equals('openfin8-ca'));
       expect(s.db.serviceName, equals('db'));
@@ -38,7 +38,7 @@ void main() {
     test('generateCorrelationId produces non-empty string', () {
       final id = generateCorrelationId();
       expect(id, isNotEmpty);
-      // SDK default prefix is 'app' (correlation.dart) — callers pass their
+      // SDK default prefix is 'app' (correlation.dart) - callers pass their
       // own prefix (e.g. eOpenCA's logger) at call sites.
       expect(id, startsWith('app-'));
     });

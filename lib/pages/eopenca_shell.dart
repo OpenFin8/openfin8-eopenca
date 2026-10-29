@@ -3,7 +3,7 @@
 // SPDX-FileCopyrightText: Copyright Contributors to the OpenFin8:EOpenCA
 // SPDX-License-Identifier: Apache-2.0
 
-// eOpenCA app shell — navigation between providers, consents, accounts, admin.
+// eOpenCA app shell - navigation between providers, consents, accounts, admin.
 import 'dart:js_interop';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
@@ -69,7 +69,7 @@ class _EOpenCAShellState extends State<EOpenCAShell> {
     // `eopenca:admin` role-marker scope. That scope is granted
     // exclusively to members of the `eopenca-admin` role, which App
     // provisions in `auth_roles` when the listing is installed in a
-    // target org/env. Exact match (not substring) — substring would
+    // target org/env. Exact match (not substring) - substring would
     // false-positive on `fdx:admin` held by data recipients.
     final isAdmin =
         appContext.auth.state.scopes.contains('eopenca:admin');
@@ -197,7 +197,7 @@ class _EOpenCAShellState extends State<EOpenCAShell> {
 
 /// Initial for the sidebar avatar. Falls back to `'?'` when the BFF
 /// session omits `displayName`/`email` (both can be empty strings), so we
-/// never index an empty string — see the matching guard in eBank's shell.
+/// never index an empty string - see the matching guard in eBank's shell.
 String _avatarInitial(EOpenCAUser? user) {
   final display = user?.displayName;
   if (display != null && display.isNotEmpty) return display[0].toUpperCase();

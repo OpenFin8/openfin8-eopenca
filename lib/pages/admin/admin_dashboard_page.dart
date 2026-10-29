@@ -3,8 +3,8 @@
 // SPDX-FileCopyrightText: Copyright Contributors to the OpenFin8:EOpenCA
 // SPDX-License-Identifier: Apache-2.0
 
-// eOpenCA admin dashboard — instance status, env vars, OAuth client summary.
-// Admin dashboard — instance status, env vars, DCR summary.
+// eOpenCA admin dashboard - instance status, env vars, OAuth client summary.
+// Admin dashboard - instance status, env vars, DCR summary.
 import 'package:flutter/material.dart';
 import '../../theme.dart';
 import '../../app_context.dart';

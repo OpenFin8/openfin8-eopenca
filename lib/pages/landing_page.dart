@@ -3,7 +3,7 @@
 // SPDX-FileCopyrightText: Copyright Contributors to the OpenFin8:EOpenCA
 // SPDX-License-Identifier: Apache-2.0
 
-// eOpenCA landing page — delegates to sentin8's LandingPage.
+// eOpenCA landing page - delegates to sentin8's LandingPage.
 import 'package:flutter/material.dart';
 import 'package:sentin8/sentin8.dart' as s8;
 import '../app_context.dart';

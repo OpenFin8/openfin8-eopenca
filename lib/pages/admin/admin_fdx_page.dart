@@ -3,8 +3,8 @@
 // SPDX-FileCopyrightText: Copyright Contributors to the OpenFin8:EOpenCA
 // SPDX-License-Identifier: Apache-2.0
 
-// eOpenCA admin FDX page — provider catalog management, consent overview, retrieval job monitoring.
-// Admin FDX — provider catalog, consent overview, retrieval monitoring.
+// eOpenCA admin FDX page - provider catalog management, consent overview, retrieval job monitoring.
+// Admin FDX - provider catalog, consent overview, retrieval monitoring.
 import 'package:flutter/material.dart';
 import '../../theme.dart';
 import '../../app_context.dart';

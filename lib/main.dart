@@ -3,7 +3,7 @@
 // SPDX-FileCopyrightText: Copyright Contributors to the OpenFin8:EOpenCA
 // SPDX-License-Identifier: Apache-2.0
 
-// eOpenCA main entry point — bootstrap, runtime context, app shell.
+// eOpenCA main entry point - bootstrap, runtime context, app shell.
 import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
 import 'package:web/web.dart' as web;
