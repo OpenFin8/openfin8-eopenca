@@ -6,23 +6,23 @@ Status: All evidence produced - ready for certification review
 | Test Suite | File | Status |
 |------------|------|--------|
 | Flutter-Sentin8:BFF contract tests | `test/contract_test.dart` | ✅ Pass |
-| Sentin8:BFF-Bank8:FDX/Sentin8:DB/Sentin8:Storage boundary tests | `test/contract_test.dart` | ✅ Pass |
+| Sentin8:BFF-OpenFin8/Sentin8:DB/Sentin8:Storage boundary tests | `test/contract_test.dart` | ✅ Pass |
 | OpenAPI 3.1 contract specs | `openapi.yaml` | ✅ Aligned |
 
 ## Account Data Test Evidence
 | Test | Description | Status |
 |------|-------------|--------|
-| Account list from Bank8:FDX snapshots | useFdxAccounts → Sentin8:BFF → Bank8:FDX GET /v1/recipient/accounts | ✅ Verified |
-| Account detail from Bank8:FDX snapshots | Account detail screen with product terms, balances | ✅ Verified |
-| Account data mapping | Bank8:FDX snapshot → EOpenCAAccount DTO (masked numbers, types, status) | ✅ Verified |
+| Account list from OpenFin8 snapshots | useFdxAccounts → Sentin8:BFF → OpenFin8 GET /v1/recipient/accounts | ✅ Verified |
+| Account detail from OpenFin8 snapshots | Account detail screen with product terms, balances | ✅ Verified |
+| Account data mapping | OpenFin8 snapshot → EOpenCAAccount DTO (masked numbers, types, status) | ✅ Verified |
 
 ## Transaction Data Test Evidence
 | Test | Description | Status |
 |------|-------------|--------|
-| Transaction history from Bank8:FDX snapshots | useFdxTransactions → Sentin8:BFF → Bank8:FDX GET /v1/recipient/accounts/{id}/transactions | ✅ Verified |
+| Transaction history from OpenFin8 snapshots | useFdxTransactions → Sentin8:BFF → OpenFin8 GET /v1/recipient/accounts/{id}/transactions | ✅ Verified |
 | Cursor-based pagination | nextPageKey handling for large transaction sets | ✅ Verified |
 | Date range filtering | startDate/endDate query parameters | ✅ Verified |
-| Transaction data mapping | Bank8:FDX snapshot → EOpenCATransaction DTO (date, amount, debit/credit, category) | ✅ Verified |
+| Transaction data mapping | OpenFin8 snapshot → EOpenCATransaction DTO (date, amount, debit/credit, category) | ✅ Verified |
 
 ## Security Test Evidence
 | Test | Description | Status |
@@ -49,9 +49,9 @@ Status: All evidence produced - ready for certification review
 |------|-------------|--------|
 | 1 | Sign up via Sentin8:Auth hosted UI | ✅ Verified |
 | 2 | Sign in via Sentin8:Auth OAuth flow (PKCE S256) | ✅ Verified |
-| 3 | Browse providers (Bank8:FDX recipient catalog) | ✅ Verified |
+| 3 | Browse providers (OpenFin8 recipient catalog) | ✅ Verified |
 | 4 | Select provider and start consent flow | ✅ Verified |
 | 5 | Complete consent authorization at external provider | ✅ Verified |
-| 6 | View consented accounts from Bank8:FDX snapshots | ✅ Verified |
+| 6 | View consented accounts from OpenFin8 snapshots | ✅ Verified |
 | 7 | View transaction history with pagination | ✅ Verified |
 | 8 | Revoke consent - data access denied | ✅ Verified |

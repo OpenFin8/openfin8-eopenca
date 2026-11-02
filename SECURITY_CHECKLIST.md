@@ -6,7 +6,7 @@
 - [ ] Session token is opaque (no embedded claims)
 
 ## Inter-Service Token Verification
-- [ ] All Sentin8:BFF → Bank8:FDX calls include Sentin8:Auth-issued access token
+- [ ] All Sentin8:BFF → OpenFin8 calls include Sentin8:Auth-issued access token
 - [ ] All Sentin8:BFF → Sentin8:DB calls include Sentin8:Auth-issued access token
 - [ ] All Sentin8:BFF → Sentin8:Storage calls include Sentin8:Auth-issued access token
 - [ ] No unauthenticated requests accepted
@@ -39,12 +39,12 @@
 
 ## No Direct External Provider Calls
 - [ ] eOpenCA never calls external FDX providers directly
-- [ ] All external provider communication through Bank8:FDX recipient orchestration
+- [ ] All external provider communication through the OpenFin8 recipient orchestration
 
 ## No Raw External Tokens
 - [ ] eOpenCA never receives raw external provider tokens
 - [ ] Sentin8:Auth stores token material as secret references
-- [ ] Bank8:FDX stores grant references (not raw tokens)
+- [ ] OpenFin8 stores grant references (not raw tokens)
 
 ## CI Guards (4.3.10-4.3.12)
 - [ ] CI detects outbound HTTP calls to non-Sentin8 hosts

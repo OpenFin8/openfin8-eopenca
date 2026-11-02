@@ -14,7 +14,7 @@ mirrored in `app.json`) and BFF scope whitelist (`bff8/scope_whitelist.rs`).
 
 **What eOpenCA does NOT own (delegates):** identity and the hosted consent
 UI (Sentin8:Auth); the FDX data plane, consent enforcement, and retrieval
-(Bank8:FDX); persistence and object access (Sentin8:DB, storage - via BFF);
+(OpenFin8); persistence and object access (Sentin8:DB, storage - via BFF);
 session/token custody (Sentin8:BFF); any ledger/payments surface (a recipient
 never touches the provider's core directly).
 
@@ -22,12 +22,12 @@ never touches the provider's core directly).
 graph TD
     B[Customer / fintech user browser] --> EF[Bank8:eOpenCA Flutter app]
     EF -->|session cookie + CSRF| BFF[Sentin8:BFF bff domain]
-    BFF --> FDX1[Bank8:FDX recipient APIs]
+    BFF --> FDX1[OpenFin8 recipient APIs]
     BFF --> AUTH[Sentin8:Auth]
     BFF --> DB[db]
     BFF --> STG[storage]
     FDX1 --> AUTH
-    FDX1 --> LED[External provider - Bank8:FDX provider plane]
+    FDX1 --> LED[External provider - OpenFin8 provider plane]
 ```
 
 ## 2. Runtime Architecture
@@ -54,10 +54,10 @@ sequenceDiagram
     participant H as FdxConsentsHook
     participant B as BffApiClient (fdx)
     participant F as Sentin8:BFF
-    participant R as Bank8:FDX recipient API
+    participant R as OpenFin8 recipient API
     participant A as Sentin8:Auth (hosted consent UI)
     P->>H: startConsent(customer, provider, scopes, redirect)
-    H->>B: POST /proxy/bank8-fdx/v1/recipient/consents/start
+    H->>B: POST /proxy/openfin8-ca/v1/recipient/consents/start
     B->>F: HTTPS POST (Cookie + X-BFF-CSRF + correlation id)
     F->>R: POST /v1/recipient/consents/start
     R-->>F: consent id + authorization_url
@@ -66,12 +66,12 @@ sequenceDiagram
     A-->>R: customer authorizes/denies
     loop bounded poll (2s × 30)
         P->>H: refresh consent status
-        H->>B: GET /proxy/bank8-fdx/v1/recipient/consents
+        H->>B: GET /proxy/openfin8-ca/v1/recipient/consents
         B->>R: GET /v1/recipient/consents
         R-->>P: ACTIVE / FAILED / TIMEOUT / pending
     end
     P->>H: list accounts (consentId filter)
-    H->>B: GET /proxy/bank8-fdx/v1/recipient/accounts?consentId=…
+    H->>B: GET /proxy/openfin8-ca/v1/recipient/accounts?consentId=…
     B->>R: GET /v1/recipient/accounts
     R-->>P: consented accounts
     note over P,R: FAILED / TIMEOUT / poll exhaustion surface error frames - never silent waits
@@ -84,9 +84,9 @@ sequenceDiagram
     participant P as ConsentDashboardPage
     participant H as FdxConsentsHook
     participant F as Sentin8:BFF
-    participant R as Bank8:FDX recipient API
+    participant R as OpenFin8 recipient API
     P->>H: revoke(consentId)
-    H->>F: POST /proxy/bank8-fdx/v1/recipient/consents/{id}/revoke
+    H->>F: POST /proxy/openfin8-ca/v1/recipient/consents/{id}/revoke
     F->>R: POST /v1/recipient/consents/{id}/revoke
     R-->>F: revoked (linked provider tokens invalidated)
     F-->>P: 200 - dashboard refreshes, consented data disappears
@@ -99,9 +99,9 @@ referenced by id:
 
 | Domain object | Owned by | eOpenCA access |
 |---|---|---|
-| Provider catalog entries | Bank8:FDX (`sentin8_app_store_listings` / provider profile registry) | read via `GET /v1/recipient/providers` |
-| Consents (customer ↔ provider) | Bank8:FDX consent registry | start/poll/revoke/refresh via `/v1/recipient/consents*` |
-| Consented accounts + transaction snapshots | Bank8:FDX retrieval of provider data | read via `/v1/recipient/accounts(/{id}/transactions)` |
+| Provider catalog entries | OpenFin8 (`sentin8_app_store_listings` / provider profile registry) | read via `GET /v1/recipient/providers` |
+| Consents (customer ↔ provider) | OpenFin8 consent registry | start/poll/revoke/refresh via `/v1/recipient/consents*` |
+| Consented accounts + transaction snapshots | OpenFin8 retrieval of provider data | read via `/v1/recipient/accounts(/{id}/transactions)` |
 
 The client keeps only ephemeral UI state (selected provider, in-flight
 consent, current route). No local persistence beyond the browser session.
@@ -113,23 +113,23 @@ app itself has no listening port.
 
 | Consumer | Method + path (via BFF) | Gate | Notes |
 |---|---|---|---|
-| Provider discovery | `GET /proxy/bank8-fdx/v1/recipient/providers` | customer session; `bank8:fdx:recipient:read` | provider catalog |
-| Consent start | `POST /v1/recipient/consents/start` | customer session; `bank8:fdx:recipient:write` | returns `redirectUrl`/`authorization_url` |
-| Consent tracking | `GET /v1/recipient/consents` | customer session; `bank8:fdx:recipient:read` | status polling + dashboard |
-| Consent revoke | `POST /v1/recipient/consents/{id}/revoke` | customer session; `bank8:fdx:recipient:write` | revokes sharing + linked tokens |
-| Consent refresh | `POST /v1/recipient/consents/{id}/refresh` | customer session; `bank8:fdx:recipient:write` | re-authorization journey |
-| Consented accounts | `GET /v1/recipient/accounts?consentId=…` | customer session; `bank8:fdx:recipient:read` | consent-scoped |
-| Consented transactions | `GET /v1/recipient/accounts/{id}/transactions` | customer session; `bank8:fdx:recipient:read` | paginated snapshots |
+| Provider discovery | `GET /proxy/openfin8-ca/v1/recipient/providers` | customer session; `openfin8:ca:recipient:read` | provider catalog |
+| Consent start | `POST /v1/recipient/consents/start` | customer session; `openfin8:ca:recipient:write` | returns `redirectUrl`/`authorization_url` |
+| Consent tracking | `GET /v1/recipient/consents` | customer session; `openfin8:ca:recipient:read` | status polling + dashboard |
+| Consent revoke | `POST /v1/recipient/consents/{id}/revoke` | customer session; `openfin8:ca:recipient:write` | revokes sharing + linked tokens |
+| Consent refresh | `POST /v1/recipient/consents/{id}/refresh` | customer session; `openfin8:ca:recipient:write` | re-authorization journey |
+| Consented accounts | `GET /v1/recipient/accounts?consentId=…` | customer session; `openfin8:ca:recipient:read` | consent-scoped |
+| Consented transactions | `GET /v1/recipient/accounts/{id}/transactions` | customer session; `openfin8:ca:recipient:read` | paginated snapshots |
 | Admin instance | runtime context only | staff | no backend calls |
 | Admin FDX | hooks as above | staff | recipient-side monitoring |
 
 Event flow eOpenCA participates in (consumer side only; consent lifecycle
-events are emitted upstream by Bank8:FDX and reflected by polling):
+events are emitted upstream by OpenFin8 and reflected by polling):
 
 ```mermaid
 flowchart LR
     C[Customer authorizes in hosted consent UI] --> AUTH[Sentin8:Auth]
-    AUTH -->|consent lifecycle| FDX[Bank8:FDX consent registry]
+    AUTH -->|consent lifecycle| FDX[OpenFin8 consent registry]
     FDX -->|consent status| POLL[eOpenCA bounded poll GET recipient/consents]
     POLL --> UI[ConsentFlowPage state]
 ```
@@ -138,10 +138,10 @@ flowchart LR
 
 - **Authentication / token custody.** BFF session cookie only; OAuth tokens
   attach server-side. Provider access tokens never exist in this app -
-  Bank8:FDX holds the retrieval credentials.
+  OpenFin8 holds the retrieval credentials.
 - **Tenant resolution.** Fail-closed runtime-context bootstrap from own
   origin, identical to the other apps.
-- **Authorization.** Recipient routes gate on `bank8:fdx:recipient:read/write`;
+- **Authorization.** Recipient routes gate on `openfin8:ca:recipient:read/write`;
   admin routes require staff authorization resolved by the BFF. Consent
   status of *other* customers is never fetchable through this app's surface.
 - **Consent minimization.** Only the requested FDX scopes are asked at
@@ -179,7 +179,7 @@ flowchart LR
 ## 8. Invariants, Insecure-Defaults Rejected, Unsafe Rationale
 
 - No direct external provider calls from the app - all FDX access is via the
-  Bank8:FDX recipient APIs through the BFF (CI guard `scripts/ci-guards.sh`
+  OpenFin8 recipient APIs through the BFF (CI guard `scripts/ci-guards.sh`
   enforces; direct provider HTTP is a hard failure).
 - No OAuth or provider token is ever present in the client.
 - Data outside a consenting relationship is never rendered (consent-scoped
@@ -199,7 +199,7 @@ flowchart LR
 
 Not tested here (platform scope): consent enforcement internals, provider
 token custody, retrieval scheduling, CSDF minimization - covered by
-Bank8:FDX's own suites.
+OpenFin8's own suites.
 
 ```mermaid
 graph TD

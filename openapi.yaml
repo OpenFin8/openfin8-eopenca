@@ -65,19 +65,19 @@ paths:
           description: Signed out
   /proxy/fdx/{path}:
     parameters:
-      - {name: path, in: path, required: true, schema: {type: string}, description: Bank8:FDX recipient API path (e.g. v1/recipient/providers)}
+      - {name: path, in: path, required: true, schema: {type: string}, description: OpenFin8 recipient API path (e.g. v1/recipient/providers)}
     get:
-      summary: Proxy to Bank8:FDX recipient (read)
+      summary: Proxy to OpenFin8 recipient (read)
       responses:
         '200':
-          description: Bank8:FDX response
+          description: OpenFin8 response
     post:
-      summary: Proxy to Bank8:FDX recipient (write - consent start, revoke, refresh)
+      summary: Proxy to OpenFin8 recipient (write - consent start, revoke, refresh)
       parameters:
         - {name: X-Sentin8:BFF-CSRF, in: header, required: true, schema: {type: string}}
       responses:
         '200':
-          description: Bank8:FDX response
+          description: OpenFin8 response
         '409':
           description: Idempotency conflict
   /proxy/db/{path}:
