@@ -1,4 +1,4 @@
-# Bank8:eOpenCA - Detailed Design Document
+# OpenFin8:EOpenCA - Detailed Design Document
 
 Overview-level material lives in `README.md`; the business view lives in
 `BUSINESS.md`.
@@ -20,7 +20,7 @@ never touches the provider's core directly).
 
 ```mermaid
 graph TD
-    B[Customer / fintech user browser] --> EF[Bank8:eOpenCA Flutter app]
+    B[Customer / fintech user browser] --> EF[OpenFin8:EOpenCA Flutter app]
     EF -->|session cookie + CSRF| BFF[Sentin8:BFF bff domain]
     BFF --> FDX1[OpenFin8 recipient APIs]
     BFF --> AUTH[Sentin8:Auth]

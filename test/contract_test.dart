@@ -10,24 +10,24 @@ import 'package:eopenca/services.dart';
 void main() {
   group('BffApiClient', () {
     test('FDX client uses correct service name', () {
-      final c = BffApiClient(bffBaseUrl: 'https://bff.bank8-eopenca.prod.acme.local.sentin8.dev', serviceName: 'openfin8-ca');
+      final c = BffApiClient(bffBaseUrl: 'https://bff.openfin8-eopenca.prod.{org_domain}', serviceName: 'openfin8-ca');
       expect(c.serviceName, equals('openfin8-ca'));
     });
 
     test('DB client uses correct service name', () {
-      final c = BffApiClient(bffBaseUrl: 'https://bff.bank8-eopenca.prod.acme.local.sentin8.dev', serviceName: 'db');
+      final c = BffApiClient(bffBaseUrl: 'https://bff.openfin8-eopenca.prod.{org_domain}', serviceName: 'db');
       expect(c.serviceName, equals('db'));
     });
 
     test('Storage client uses correct service name', () {
-      final c = BffApiClient(bffBaseUrl: 'https://bff.bank8-eopenca.prod.acme.local.sentin8.dev', serviceName: 'storage');
+      final c = BffApiClient(bffBaseUrl: 'https://bff.openfin8-eopenca.prod.{org_domain}', serviceName: 'storage');
       expect(c.serviceName, equals('storage'));
     });
   });
 
   group('EOpenCAServices', () {
     test('Creates only 3 service clients (no ledger/payments - read-only recipient)', () {
-      final s = EOpenCAServices(bffBaseUrl: 'https://bff.bank8-eopenca.prod.acme.local.sentin8.dev');
+      final s = EOpenCAServices(bffBaseUrl: 'https://bff.openfin8-eopenca.prod.{org_domain}');
       expect(s.fdx.serviceName, equals('openfin8-ca'));
       expect(s.db.serviceName, equals('db'));
       expect(s.storage.serviceName, equals('storage'));

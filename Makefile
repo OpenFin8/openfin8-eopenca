@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: Copyright Contributors to the OpenFin8:EOpenCA
 # SPDX-License-Identifier: Apache-2.0
 
-# Makefile — bank8-eopenca (app repo, RS §4.5)
+# Makefile — openfin8-eopenca (app repo, RS §4.5)
 #
 # Self-contained dev controls for THIS app. Sources the root .env for
 # fleet env, guarantees the dev infra, and uses an ABSOLUTE
@@ -71,7 +71,7 @@ endef
 	$(PROFILED:%=%-release) $(PROFILED:%=%-debug)
 
 help: ## Show this help
-	@echo "bank8-eopenca (Flutter app)"
+	@echo "openfin8-eopenca (Flutter app)"
 	@grep -E '^[a-z-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-16s\033[0m %s\n", $$1, $$2}'
 
 build: ## Build the web bundle (version-stamped; copies repo .env into build/web/)

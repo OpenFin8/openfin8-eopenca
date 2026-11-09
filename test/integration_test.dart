@@ -10,21 +10,21 @@ import 'package:eopenca/services.dart';
 void main() {
   group('Consent flow integration', () {
     test('EOpenCAServices provides FDX client for consent operations', () {
-      final s = EOpenCAServices(bffBaseUrl: 'https://bff.bank8-eopenca.prod.acme.local.sentin8.dev');
+      final s = EOpenCAServices(bffBaseUrl: 'https://bff.openfin8-eopenca.prod.{org_domain}');
       expect(s.fdx.serviceName, equals('openfin8-ca'));
     });
   });
 
   group('Provider catalog integration', () {
     test('FDX client available for provider catalog', () {
-      final s = EOpenCAServices(bffBaseUrl: 'https://bff.bank8-eopenca.prod.acme.local.sentin8.dev');
+      final s = EOpenCAServices(bffBaseUrl: 'https://bff.openfin8-eopenca.prod.{org_domain}');
       expect(s.fdx, isNotNull);
     });
   });
 
   group('Data refresh integration', () {
     test('FDX client available for refresh trigger', () {
-      final s = EOpenCAServices(bffBaseUrl: 'https://bff.bank8-eopenca.prod.acme.local.sentin8.dev');
+      final s = EOpenCAServices(bffBaseUrl: 'https://bff.openfin8-eopenca.prod.{org_domain}');
       expect(s.fdx, isNotNull);
     });
   });
