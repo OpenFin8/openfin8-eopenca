@@ -105,19 +105,43 @@ class FdxAccountsHook extends ChangeNotifier {
   DataState<List<Map<String, dynamic>>> get state => _state;
   List<Map<String, dynamic>> get accounts => _state.data ?? [];
 
+  // The provider seeds the consent grant asynchronously from the AS's
+  // grant event (outbox -> relay -> bus -> the provider's consumer), so
+  // the FIRST read after the consent redirect can legitimately see an
+  // empty list while the grant settles. Poll briefly instead of parking
+  // on the terminal "No accounts yet" state: a consented customer
+  // arriving at this page just authorized - an empty list that STAYS
+  // empty after the settle window is the honest empty state.
+  static const int _maxSettleAttempts = 12;
+  static const Duration _settleInterval = Duration(milliseconds: 1500);
+
   Future<void> fetch() async {
     _state = const DataState(isLoading: true); notifyListeners();
-    try {
-      final path = consentId != null
-          ? '/v1/recipient/accounts?consent_id=$consentId'
-          : '/v1/recipient/accounts';
-      final response = await fdx.get(path);
-      if (response.isSuccess && response.data != null) {
-        final accounts = (response.data!['accounts'] as List<dynamic>?)?.map((e) => e as Map<String, dynamic>).toList() ?? [];
-        _state = DataState(data: accounts);
-      } else { _state = const DataState(data: []); }
-    } catch (e) { _state = DataState(error: e.toString()); }
-    notifyListeners();
+    for (var attempt = 0;; attempt++) {
+      try {
+        final path = consentId != null
+            ? '/v1/recipient/accounts?consent_id=$consentId'
+            : '/v1/recipient/accounts';
+        final response = await fdx.get(path);
+        if (response.isSuccess && response.data != null) {
+          final accounts = (response.data!['accounts'] as List<dynamic>?)?.map((e) => e as Map<String, dynamic>).toList() ?? [];
+          if (accounts.isNotEmpty || attempt >= _maxSettleAttempts) {
+            _state = DataState(data: accounts);
+            notifyListeners();
+            return;
+          }
+        } else {
+          _state = const DataState(data: []);
+          notifyListeners();
+          return;
+        }
+      } catch (e) {
+        _state = DataState(error: e.toString());
+        notifyListeners();
+        return;
+      }
+      await Future<void>.delayed(_settleInterval);
+    }
   }
 }
 
