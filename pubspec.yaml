@@ -6,7 +6,7 @@
 name: eopenca
 description: eOpenCA - Sentin8 OpenFin8:CA open-finance data recipient demo. Flutter (iOS, Android, Web).
 publish_to: "none"
-version: 0.1.0
+version: 1.0.0
 
 environment:
   sdk: ">=3.4.0 <4.0.0"
